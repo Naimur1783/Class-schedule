@@ -1,53 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Planner</title>
+    <title>School Planner Dashboard</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <!-- Login Section -->
-    <div id="login-section" class="container">
-        <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <p id="login-error" class="error"></p>
-    </div>
-
-    <!-- Main Planner Section (hidden until login) -->
-    <div id="planner-section" class="container hidden">
-        <header>
-            <h1>Weekly Planner</h1>
-            <button onclick="logout()">Logout</button>
-        </header>
-
-        <!-- Timetable Section -->
-        <section id="timetable">
-            <h2>Weekly Timetable</h2>
-            <div class="grid">
-                <!-- Timetable grid cells will be dynamically populated -->
-            </div>
+    <header>
+        <h1>School Planner Dashboard</h1>
+        <nav>
+            <button id="admin-login">Admin Login</button>
+            <button id="student-login">Student Login</button>
+        </nav>
+    </header>
+    <main>
+        <section id="routine">
+            <h2>Weekly Class Schedule</h2>
+            <!-- Routine table populated by JavaScript -->
+            <div id="routine-container"></div>
         </section>
-
-        <!-- Task List Section -->
-        <section id="task-list">
-            <h2>Tasks & Reminders</h2>
-            <div id="tasks">
-                <!-- Tasks will be dynamically populated -->
-            </div>
-            <input type="text" id="new-task" placeholder="Add a new task...">
-            <button onclick="addTask()">Add Task</button>
+        <section id="student-progress">
+            <h2>Your Progress</h2>
+            <p>Track and tick off completed classes here:</p>
+            <div id="progress-container"></div>
         </section>
-
-        <!-- Dashboard Section -->
-        <section id="dashboard">
-            <h2>Overview</h2>
-            <p id="progress-summary">Progress will be displayed here.</p>
+        <section id="reminders">
+            <h2>Reminders</h2>
+            <p>Set reminders for upcoming classes:</p>
+            <div id="reminders-container"></div>
         </section>
-    </div>
-
-    <script src="script.js"></script>
+    </main>
 </body>
 </html>
