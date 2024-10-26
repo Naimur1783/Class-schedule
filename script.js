@@ -1,66 +1,65 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+// Sample credentials for login
+const adminCredentials = {
+    username: "naimur",
+    password: "killer@1783"
+};
+
+// Dummy data for routine and tasks
+const routine = {};
+const tasks = [];
+
+// Login function
+function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    if (username === adminCredentials.username && password === adminCredentials.password) {
+        document.getElementById("login-section").classList.add("hidden");
+        document.getElementById("planner-section").classList.remove("hidden");
+    } else {
+        document.getElementById("login-error").textContent = "Invalid credentials";
+    }
 }
 
-body {
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+// Logout function
+function logout() {
+    document.getElementById("planner-section").classList.add("hidden");
+    document.getElementById("login-section").classList.remove("hidden");
+    document.getElementById("login-error").textContent = "";
 }
 
-.container {
-    width: 100%;
-    max-width: 600px;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
+// Task addition
+function addTask() {
+    const newTask = document.getElementById("new-task").value;
+    if (newTask) {
+        tasks.push({ text: newTask, completed: false });
+        updateTaskList();
+        document.getElementById("new-task").value = "";
+    }
 }
 
-.hidden {
-    display: none;
+// Task rendering
+function updateTaskList() {
+    const taskList = document.getElementById("tasks");
+    taskList.innerHTML = "";
+    tasks.forEach((task, index) => {
+        const taskItem = document.createElement("div");
+        taskItem.className = "task";
+        taskItem.innerHTML = `<input type="checkbox" onchange="toggleTask(${index})" ${task.completed ? "checked" : ""}>
+                              <span>${task.text}</span>`;
+        taskList.appendChild(taskItem);
+    });
 }
 
-h2 {
-    color: #333;
-    margin-bottom: 10px;
+// Task toggle for completion
+function toggleTask(index) {
+    tasks[index].completed = !tasks[index].completed;
+    updateDashboard();
 }
 
-input, button {
-    padding: 10px;
-    margin: 10px 0;
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-}
-
-.error {
-    color: red;
-    font-size: 0.9em;
-}
-
-#dashboard {
-    margin-top: 20px;
+// Dashboard progress update
+function updateDashboard() {
+    const completedTasks = tasks.filter(task => task.completed).length;
+    const totalTasks = tasks.length;
+    const progress = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+    document.getElementById("progress-summary").textContent = `Task completion: ${progress}%`;
 }
