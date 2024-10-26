@@ -1,65 +1,66 @@
-body {
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f0f2f5;
 }
 
-h2 {
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     text-align: center;
-    color: #333;
 }
 
 .hidden {
     display: none;
 }
 
-#login-section, #admin-section, #routine-section, #log-portal {
+h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
     border: 1px solid #ddd;
-    padding: 20px;
-    background-color: #fff;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #5a67d8;
+    background-color: #007bff;
     color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #4c51bf;
+    background-color: #0056b3;
 }
 
-table {
-    width: 100%;
-    margin-top: 10px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
 }
 
-th, td {
-    padding: 8px;
-    text-align: center;
+.error {
+    color: red;
+    font-size: 0.9em;
 }
 
-input[type="checkbox"] {
-    cursor: pointer;
-}
-
-input, button {
-    margin-top: 10px;
-}
-
-#admin-section h3 {
+#dashboard {
     margin-top: 20px;
-    font-size: 1.2em;
 }
