@@ -3,59 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Class Routine</title>
+    <title>School Planner</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Login Section -->
-    <div id="login-section">
+    <div id="login-section" class="container">
         <h2>Login</h2>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
         <button onclick="login()">Login</button>
+        <p id="login-error" class="error"></p>
     </div>
 
-    <!-- Admin Section (only visible for admin) -->
-    <div id="admin-section" class="hidden">
-        <h2>Admin Panel</h2>
-        <div>
-            <input type="text" id="new-username" placeholder="New Username">
-            <input type="password" id="new-password" placeholder="New Password">
-            <button onclick="addUser()">Add User</button>
-        </div>
-        
-        <!-- Routine Creation Form -->
-        <h3>Create Routine</h3>
-        <input type="text" id="class-day" placeholder="Day (e.g., Saturday)">
-        <input type="text" id="class-name" placeholder="Class Name (e.g., Math)">
-        <button onclick="addRoutineEntry()">Add to Routine</button>
-        
-        <button onclick="logout()">Logout</button>
-    </div>
+    <!-- Main Planner Section (hidden until login) -->
+    <div id="planner-section" class="container hidden">
+        <header>
+            <h1>Weekly Planner</h1>
+            <button onclick="logout()">Logout</button>
+        </header>
 
-    <!-- Weekly Routine Section -->
-    <div id="routine-section" class="hidden">
-        <h2>Weekly Class Routine (Bangladesh Time)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Day</th>
-                    <th>Class</th>
-                    <th>Progress</th>
-                </tr>
-            </thead>
-            <tbody id="routine">
-                <!-- Routine entries added dynamically here -->
-            </tbody>
-        </table>
-        <button onclick="logout()">Logout</button>
-    </div>
+        <!-- Timetable Section -->
+        <section id="timetable">
+            <h2>Weekly Timetable</h2>
+            <div class="grid">
+                <!-- Timetable grid cells will be dynamically populated -->
+            </div>
+        </section>
 
-    <!-- Log Portal for Students -->
-    <div id="log-portal" class="hidden">
-        <h2>Progress Log</h2>
-        <ul id="log-list"></ul>
-        <button onclick="logout()">Logout</button>
+        <!-- Task List Section -->
+        <section id="task-list">
+            <h2>Tasks & Reminders</h2>
+            <div id="tasks">
+                <!-- Tasks will be dynamically populated -->
+            </div>
+            <input type="text" id="new-task" placeholder="Add a new task...">
+            <button onclick="addTask()">Add Task</button>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <h2>Overview</h2>
+            <p id="progress-summary">Progress will be displayed here.</p>
+        </section>
     </div>
 
     <script src="script.js"></script>
