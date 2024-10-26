@@ -1,95 +1,66 @@
-// Users data
-const users = {
-    'naimur': 'killer@1783',  // Admin account
-};
-
-// Check if the user is an admin
-let isAdmin = false;
-
-// Store the routine entries
-let routineEntries = [];
-
-// Login function
-function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    if (users[username] && users[username] === password) {
-        if (username === 'naimur') isAdmin = true;
-
-        document.getElementById('login-section').classList.add('hidden');
-        document.getElementById(isAdmin ? 'admin-section' : 'routine-section').classList.remove('hidden');
-        displayRoutine(); // Load the routine on login
-    } else {
-        alert('Invalid credentials');
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-// Logout function
-function logout() {
-    isAdmin = false;
-    document.getElementById('admin-section').classList.add('hidden');
-    document.getElementById('routine-section').classList.add('hidden');
-    document.getElementById('log-portal').classList.add('hidden');
-    document.getElementById('login-section').classList.remove('hidden');
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-// Add new user (admin only)
-function addUser() {
-    if (!isAdmin) return;
-    
-    const newUsername = document.getElementById('new-username').value;
-    const newPassword = document.getElementById('new-password').value;
-    
-    if (newUsername && newPassword) {
-        users[newUsername] = newPassword;
-        alert(`User ${newUsername} added successfully.`);
-    } else {
-        alert('Enter valid username and password.');
-    }
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
 }
 
-// Add routine entry (admin only)
-function addRoutineEntry() {
-    if (!isAdmin) return;
-
-    const day = document.getElementById('class-day').value;
-    const className = document.getElementById('class-name').value;
-
-    if (day && className) {
-        routineEntries.push({ day, className });
-        alert(`Added ${className} on ${day} to the routine.`);
-        displayRoutine(); // Update the routine display
-    } else {
-        alert('Please enter both day and class name.');
-    }
+.hidden {
+    display: none;
 }
 
-// Display routine for all users
-function displayRoutine() {
-    const routineTable = document.getElementById('routine');
-    routineTable.innerHTML = ''; // Clear existing entries
-
-    routineEntries.forEach(entry => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${entry.day}</td>
-            <td>${entry.className}</td>
-            <td><input type="checkbox" onclick="logProgress('${entry.className}', '${entry.day}')"></td>
-        `;
-        routineTable.appendChild(row);
-    });
+h2 {
+    color: #333;
+    margin-bottom: 10px;
 }
 
-// Log progress for each class
-function logProgress(className, day) {
-    const logList = document.getElementById('log-list');
-    const logItem = document.createElement('li');
-    const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Dhaka" });
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
 
-    logItem.textContent = `${className} - ${day} - ${timestamp}`;
-    logList.appendChild(logItem);
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
 
-    document.getElementById('routine-section').classList.add('hidden');
-    document.getElementById('log-portal').classList.remove('hidden');
+button:hover {
+    background-color: #0056b3;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+#dashboard {
+    margin-top: 20px;
 }
